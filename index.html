@@ -486,7 +486,7 @@ function rejouer() {
 }
 
 // === GOOGLE SHEETS ===
-async function envoyerSheets(prenom, mot, tentative, correct) {
+function envoyerSheets(prenom, mot, tentative, correct) {
   const now = new Date();
   const date = now.toLocaleDateString("fr-FR");
   const heure = now.toLocaleTimeString("fr-FR");
@@ -495,11 +495,8 @@ async function envoyerSheets(prenom, mot, tentative, correct) {
     correct: correct ? "OUI" : "NON",
     date, heure
   });
-  try {
-    await fetch(SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" });
-  } catch(e) {
-    console.warn("Erreur envoi Sheets:", e);
-  }
+  const img = new Image();
+  img.src = SCRIPT_URL + "?" + params.toString();
 }
 
 // INIT

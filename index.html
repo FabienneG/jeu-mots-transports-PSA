@@ -437,13 +437,20 @@ function valider() {
     z.className = "zone-saisie correct";
     fb.textContent = "🌟 Bravo !";
     fb.className = "feedback ok";
+    valide = true;
   } else {
     z.className = "zone-saisie erreur";
     fb.textContent = "😊 Essaie encore !";
     fb.className = "feedback ko";
+    saisie = "";
+    setTimeout(() => {
+      z.className = "zone-saisie";
+      z.innerHTML = '<span class="curseur"></span>';
+      fb.textContent = "";
+      fb.className = "feedback";
+    }, 1000);
+    return;
   }
-
-  valide = true;
   envoyerSheets(eleveActif, listeMots[motIndex].mot, saisie, correct);
 
   const btnSuiv = document.getElementById("btn-suivant");
